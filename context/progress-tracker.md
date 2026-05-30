@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Build editor shell components and verify the floating sidebar and dialog pattern.
+Implement Clerk authentication for Ghost AI and protect the editor workspace.
 
 ## Completed
 
@@ -19,24 +19,31 @@ Build editor shell components and verify the floating sidebar and dialog pattern
 -Implemented editor shell components: `EditorNavbar` and `ProjectSidebar`
 -Expanded `Dialog` pattern with title, description, and footer support using existing color tokens
 -Integrated sidebar and navbar into `app/page.tsx`
+-Added Clerk auth integration with `ClerkProvider`, public auth routes, and root redirect logic
+-Added `proxy.ts` to enable Clerk middleware routing and protect non-auth pages
+-Added `UserButton` to the editor navbar for Clerk profile/logout controls
+-Installed `@clerk/ui` and verified production build passes
 
 ## In Progress
 
--Verify UI component behavior and ensure no TypeScript errors
+-Validate auth appearance in the browser and confirm sign-in/sign-up UX matches design intent
 
 ## Next Up
 
--Run dev server and confirm the editor UI renders without issues
--Adjust component spacing or styling as needed based on live preview
+-Confirm the sign-in and sign-up pages on a live preview
+-Finish any final light styling adjustments for auth pages
+-Verify auth env vars are present and update redirect config if needed
 
 ## Open Questions
 
--Add unresolved product or implementation questions here.
+-Confirm the exact Clerk env vars available in the project (`NEXT_PUBLIC_CLERK_SIGN_IN_URL`, `NEXT_PUBLIC_CLERK_SIGN_UP_URL`)
 
 ## Architecture Decisions
 
--Add decisions that affect the system design or data model.
+-Use Clerk's built-in session and user menu controls rather than custom auth flows
+-Protect the editor workspace by default and keep only auth pages public
 
 ## Session Notes
 
--Add context needed to resume work in the next session.
+-Clerk auth was wired into the root layout and editor shell during this session.
+-Auth pages were built with Clerk sign-in/sign-up components and the dark theme.

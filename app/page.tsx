@@ -1,20 +1,14 @@
-import { EditorLayout } from '@/components/editor/editor-layout'
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 
-export default function Home() {
-  return (
-    <EditorLayout>
-      <div className="rounded-3xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-8 shadow-sm">
-        <h1 className="text-2xl font-semibold text-[var(--text-primary)]">Welcome to Ghost AI</h1>
-        <p className="mt-2 max-w-2xl text-sm text-[var(--text-secondary)]">
-          This editor shell includes the top navbar and floating project sidebar pattern specified in the editor feature spec.
-        </p>
-      </div>
+const signInUrl = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? "/sign-in";
 
-      <div className="flex-1 rounded-3xl border border-[var(--border-default)] bg-[var(--bg-base)] p-8 text-[var(--text-secondary)]">
-        <p className="text-sm">
-          Open the sidebar using the navbar button. The canvas area remains fixed while the sidebar floats on top.
-        </p>
-      </div>
-    </EditorLayout>
-  )
+export default async function Home() {
+  const { userId } = await auth();
+
+  if (userId) {
+    redirect("/editor");
+  }
+
+  redirect(signInUrl);
 }

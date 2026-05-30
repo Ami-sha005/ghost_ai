@@ -26,4 +26,4 @@ Read `AGENTS.md` before starting.
 
  -All components import without errors
  -`cn()` works properly
- -No default light styling appearsI
+ -No default light styling appears
